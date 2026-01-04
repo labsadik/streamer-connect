@@ -1,0 +1,268 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 240 10% 3.9%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Stick Design Variables */
+    --stick-primary: 220 100% 50%;
+    --stick-secondary: 280 100% 70%;
+    --stick-accent: 160 100% 45%;
+    --stick-surface: 0 0% 99%;
+    --stick-surface-variant: 240 5% 96%;
+    --stick-outline: 220 15% 85%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    --sidebar-background: 240 6% 10%;
+    --sidebar-foreground: 240 5% 84.9%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 240 5.9% 10%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 240 4.9% 83.9%;
+
+    /* Dark Stick Design Variables */
+    --stick-primary: 220 100% 60%;
+    --stick-secondary: 280 100% 75%;
+    --stick-accent: 160 100% 50%;
+    --stick-surface: 240 8% 8%;
+    --stick-surface-variant: 240 6% 12%;
+    --stick-outline: 220 15% 25%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border antialiased;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  /* Stick Design Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    background: linear-gradient(135deg, hsl(var(--stick-primary)), hsl(var(--stick-secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl;
+  }
+}
+
+@layer utilities {
+  /* Stick Design System */
+  .stick-gradient-bg {
+    background: linear-gradient(135deg, hsl(var(--stick-primary)) 0%, hsl(var(--stick-secondary)) 100%);
+  }
+
+  .stick-gradient-text {
+    background: linear-gradient(135deg, hsl(var(--stick-primary)), hsl(var(--stick-secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stick-surface {
+    @apply bg-[hsl(var(--stick-surface))] border border-[hsl(var(--stick-outline))];
+  }
+
+  .stick-card {
+    @apply stick-surface rounded-2xl shadow-lg backdrop-blur-sm;
+    background: linear-gradient(145deg, hsl(var(--stick-surface)), hsl(var(--stick-surface-variant)));
+  }
+
+  .stick-btn-primary {
+    @apply stick-gradient-bg text-white font-medium px-6 py-3 rounded-full;
+    @apply shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply hover:scale-105 active:scale-95;
+  }
+
+  .stick-btn-secondary {
+    @apply bg-[hsl(var(--stick-surface-variant))] text-foreground font-medium px-6 py-3 rounded-full;
+    @apply border border-[hsl(var(--stick-outline))] hover:border-[hsl(var(--stick-primary))];
+    @apply shadow-md hover:shadow-lg transition-all duration-300;
+    @apply hover:scale-105 active:scale-95;
+  }
+
+  .stick-input {
+    @apply bg-[hsl(var(--stick-surface))] border-2 border-[hsl(var(--stick-outline))];
+    @apply rounded-xl px-4 py-3 transition-all duration-300;
+    @apply focus:border-[hsl(var(--stick-primary))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--stick-primary))]/20;
+  }
+
+  .stick-nav {
+    @apply bg-[hsl(var(--stick-surface))]/80 backdrop-blur-lg border-b border-[hsl(var(--stick-outline))];
+    @apply shadow-sm;
+  }
+
+  .stick-hero {
+    background: linear-gradient(135deg, hsl(var(--stick-surface)) 0%, hsl(var(--stick-surface-variant)) 100%);
+    position: relative;
+  }
+
+  .stick-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, hsl(var(--stick-primary))/10 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, hsl(var(--stick-secondary))/10 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .glass {
+    @apply backdrop-blur-lg bg-white/80 dark:bg-black/20 border border-white/20 shadow-lg;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+
+  .video-container video,
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Enhanced Animations */
+  .page-transition-enter {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  
+  .page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 400ms cubic-bezier(0.19, 1, 0.22, 1), 
+                transform 400ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  .page-transition-exit {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  .page-transition-exit-active {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+    transition: opacity 400ms cubic-bezier(0.19, 1, 0.22, 1), 
+                transform 400ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  /* Stick Design Hover Effects */
+  .stick-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .stick-hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+}
