@@ -122,7 +122,7 @@ export default function Auth() {
         <div className="flex justify-between items-center mb-4">
           <div className="flex items-center gap-2">
             <Video className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold">NoorCast</h1>
+            <h1 className="text-2xl font-bold">Streamer</h1>
           </div>
           <Button
             variant="ghost"

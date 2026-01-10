@@ -397,14 +397,14 @@ export default function VideoUploader() {
         </div>
         <CardTitle className="flex items-center gap-2 text-lg md:text-xl">
           <Video className="h-5 w-5 md:h-6 md:w-6" />
-          Upload Video - No Size Limitations
+          Upload Video - 50MB Size Limitation
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4 md:space-y-6 p-4 md:p-6">
         {/* Video Upload Section */}
         <div className="space-y-3 md:space-y-4">
           <Label htmlFor="video-upload" className="text-sm md:text-base font-medium">
-            Select Video File (Any Size Supported)
+            Select Video File (Only 50MB Size Support)
           </Label>
           <div
             className={cn(

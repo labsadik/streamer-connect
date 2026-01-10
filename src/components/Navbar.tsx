@@ -49,6 +49,21 @@ interface NavbarProps {
   onSearch?: (query: string) => void;
 }
 
+interface Profile {
+  id: string;
+  username: string | null;
+  full_name: string | null;
+  avatar: string | null;
+  subscriber_count: number | null;
+  video_count: number | null;
+  verified: boolean | null;
+  role: string | null;
+  created_at: string | null;
+  updated_at: string | null;
+  about: string | null;
+  banner: string | null;
+}
+
 export default function Navbar({ onSearch }: NavbarProps) {
   const { user, signOut } = useAuth();
   const isMobile = useIsMobile();
@@ -58,6 +73,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
   const [notificationCount, setNotificationCount] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedMode = localStorage.getItem('darkMode');
@@ -66,6 +82,29 @@ export default function Navbar({ onSearch }: NavbarProps) {
     }
     return false;
   });
+
+  // Fetch user profile from Supabase
+  const fetchProfile = useCallback(async () => {
+    if (!user) return;
+    
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+        
+      if (error) throw error;
+      setProfile(data);
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+    }
+  }, [user]);
+
+  // Fetch profile when user changes
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
   // Toggle dark mode without coming soon popup
   const toggleDarkMode = useCallback(() => {
@@ -151,6 +190,24 @@ export default function Navbar({ onSearch }: NavbarProps) {
     { to: "/saved-videos", icon: BookMarked, label: "Library" },
   ] : [];
 
+  // Helper function to get display name
+  const getDisplayName = () => {
+    if (profile?.full_name) return profile.full_name;
+    if (profile?.username) return profile.username;
+    return user?.email || "User";
+  };
+
+  // Helper function to get avatar initials
+  const getAvatarInitials = () => {
+    if (profile?.full_name) {
+      return profile.full_name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    }
+    if (profile?.username) {
+      return profile.username.substring(0, 2).toUpperCase();
+    }
+    return user?.email?.charAt(0).toUpperCase() || "U";
+  };
+
   // Mobile view
   if (isMobile) {
     return (
@@ -171,7 +228,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
                         <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
                           <Video className="w-5 h-5 text-white" />
                         </div>
-                        <span className="font-bold text-xl">NoorCast</span>
+                        <span className="font-bold text-xl">Streamer</span>
                       </Link>
                     </div>
                     
@@ -214,14 +271,14 @@ export default function Navbar({ onSearch }: NavbarProps) {
                       <div className="border-t p-4">
                         <div className="flex items-center gap-3 mb-4">
                           <Avatar className="h-10 w-10 flex-shrink-0">
-                            <AvatarImage src={user.user_metadata?.avatar} />
+                            <AvatarImage src={profile?.avatar || ""} />
                             <AvatarFallback>
-                              {user.email?.charAt(0).toUpperCase()}
+                              {getAvatarInitials()}
                             </AvatarFallback>
                           </Avatar>
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium truncate">
-                              {user.user_metadata?.name || user.email}
+                              {getDisplayName()}
                             </p>
                             <p className="text-xs text-muted-foreground truncate">
                               {user.email}
@@ -265,7 +322,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
                 <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
                   <Video className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-bold text-xl">NoorCast</span>
+                <span className="font-bold text-xl">Streamer</span>
               </Link>
             </div>
             
@@ -284,9 +341,9 @@ export default function Navbar({ onSearch }: NavbarProps) {
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="h-10 w-10 relative">
                       <Avatar className="h-8 w-8">
-                        <AvatarImage src={user.user_metadata?.avatar} />
+                        <AvatarImage src={profile?.avatar || ""} />
                         <AvatarFallback className="text-xs">
-                          {user.email?.charAt(0).toUpperCase()}
+                          {getAvatarInitials()}
                         </AvatarFallback>
                       </Avatar>
                     </Button>
@@ -339,7 +396,7 @@ export default function Navbar({ onSearch }: NavbarProps) {
             <div className="w-9 h-9 bg-red-600 rounded-xl flex items-center justify-center">
               <Video className="w-6 h-6 text-white" />
             </div>
-            <span className="font-bold text-xl hidden sm:inline-block">NoorCast</span>
+            <span className="font-bold text-xl hidden sm:inline-block">Streamer</span>
           </Link>
           
           {/* Search Bar - Enhanced for real-time search */}
@@ -435,9 +492,9 @@ export default function Navbar({ onSearch }: NavbarProps) {
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full">
                         <Avatar className="h-8 w-8">
-                          <AvatarImage src={user.user_metadata?.avatar} />
+                          <AvatarImage src={profile?.avatar || ""} />
                           <AvatarFallback>
-                            {user.email?.charAt(0).toUpperCase()}
+                            {getAvatarInitials()}
                           </AvatarFallback>
                         </Avatar>
                       </Button>
@@ -445,14 +502,14 @@ export default function Navbar({ onSearch }: NavbarProps) {
                     <DropdownMenuContent align="end" className="w-64">
                       <div className="flex items-center gap-3 p-3">
                         <Avatar className="h-10 w-10">
-                          <AvatarImage src={user.user_metadata?.avatar} />
+                          <AvatarImage src={profile?.avatar || ""} />
                           <AvatarFallback>
-                            {user.email?.charAt(0).toUpperCase()}
+                            {getAvatarInitials()}
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex-1 min-w-0">
                           <p className="font-medium truncate">
-                            {user.user_metadata?.name || user.email}
+                            {getDisplayName()}
                           </p>
                           <p className="text-sm text-muted-foreground truncate">
                             {user.email}

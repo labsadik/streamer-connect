@@ -1,6 +1,4 @@
-
 import { User, Video, Comment } from "@/types";
-import { supabase } from "@/integrations/supabase/client";
 
 // Mock Users
 export const users: User[] = [
@@ -41,111 +39,137 @@ export const users: User[] = [
   },
 ];
 
-// Mock Videos
+// Mock Videos with animation-themed content
 export const videos: Video[] = [
   {
     id: "1",
-    title: "Introduction to Web Development in 2023",
-    description: "Learn the basics of web development in this comprehensive guide for beginners.",
-    thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=280&fit=crop",
-    videoUrl: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
+    title: "Big Buck Bunny: Animated Short Film",
+    description: "Enjoy this delightful animated short film featuring Big Buck Bunny, a gentle giant rabbit who encounters three rodents. A perfect example of open-source animation creativity.",
+    thumbnail: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&h=280&fit=crop",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     views: 1250000,
     createdAt: "2023-08-12T15:30:00Z",
-    duration: 895, // in seconds
+    duration: 596, // 9:56 - actual video length
     userId: "3",
     likes: 45600,
     dislikes: 1200,
   },
   {
     id: "2",
-    title: "Bali Travel Guide: Hidden Gems",
-    description: "Discover the secret spots in Bali that most tourists never get to see.",
-    thumbnail: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&h=280&fit=crop",
-    videoUrl: "https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
+    title: "For Bigger Blazes: Fire Safety Animation",
+    description: "An educational animated short about fire safety and prevention. Learn important safety tips through engaging animation that makes learning about fire safety fun and memorable.",
+    thumbnail: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=500&h=280&fit=crop",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     views: 876000,
     createdAt: "2023-09-05T08:45:00Z",
-    duration: 1250, // in seconds
+    duration: 15, // 0:15 - actual video length
     userId: "4",
     likes: 32400,
     dislikes: 800,
   },
   {
     id: "3",
-    title: "Perfect Pasta Carbonara Recipe",
-    description: "Master the classic Italian dish with these simple steps.",
-    thumbnail: "https://images.unsplash.com/photo-1546549032-9571cd6b27df?w=500&h=280&fit=crop",
-    videoUrl: "https://samplelib.com/lib/preview/mp4/sample-15s.mp4",
+    title: "For Bigger Escapes: Adventure Animation",
+    description: "Join this exciting animated adventure as characters navigate through thrilling escape scenarios. A fun-filled animation that showcases creative storytelling and visual effects.",
+    thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=500&h=280&fit=crop",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     views: 543000,
     createdAt: "2023-07-28T12:15:00Z",
-    duration: 720, // in seconds
+    duration: 15, // 0:15 - actual video length
     userId: "5",
     likes: 28900,
     dislikes: 600,
   },
   {
     id: "4",
-    title: "iPhone 15 Pro: Honest Review",
-    description: "A detailed look at Apple's latest flagship phone.",
-    thumbnail: "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=500&h=280&fit=crop",
-    videoUrl: "https://samplelib.com/lib/preview/mp4/sample-20s.mp4",
+    title: "For Bigger Fun: Entertainment Animation",
+    description: "Experience the joy and excitement in this vibrant animation about having fun. A colorful and energetic short that celebrates the spirit of entertainment and enjoyment.",
+    thumbnail: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&h=280&fit=crop",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     views: 2100000,
     createdAt: "2023-10-01T10:30:00Z",
-    duration: 1080, // in seconds
+    duration: 60, // 1:00 - actual video length
     userId: "3",
     likes: 78500,
     dislikes: 3200,
   },
   {
     id: "5",
-    title: "Morning Routine for Productivity",
-    description: "Start your day right with these 5 habits that boost productivity.",
-    thumbnail: "https://images.unsplash.com/photo-1540929255252-95a9c8cf6175?w=500&h=280&fit=crop",
-    videoUrl: "https://samplelib.com/lib/preview/mp4/sample-30s.mp4",
+    title: "For Bigger Joyrides: Car Adventure Animation",
+    description: "Buckle up for an animated joyride featuring exciting car adventures and thrilling road trips. A dynamic animation that captures the freedom and excitement of driving.",
+    thumbnail: "https://images.unsplash.com/photo-1554224154-260325c0595e?w=500&h=280&fit=crop",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     views: 732000,
     createdAt: "2023-08-25T07:20:00Z",
-    duration: 685, // in seconds
+    duration: 60, // 1:00 - actual video length
     userId: "2",
     likes: 41200,
     dislikes: 950,
   },
   {
     id: "6",
-    title: "React vs Vue in 2023: Which to Choose?",
-    description: "An in-depth comparison of two popular frontend frameworks.",
-    thumbnail: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&h=280&fit=crop",
-    videoUrl: "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
+    title: "For Bigger Meltdowns: Comedy Animation",
+    description: "Laugh along with this hilarious animated short about meltdowns and funny situations. A comedy animation that showcases the lighter side of everyday frustrations.",
+    thumbnail: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=500&h=280&fit=crop",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
     views: 965000,
     createdAt: "2023-09-18T14:45:00Z",
-    duration: 1450, // in seconds
+    duration: 60, // 1:00 - actual video length
     userId: "1",
     likes: 52300,
     dislikes: 1800,
   },
   {
     id: "7",
-    title: "New York City: A Local's Guide",
-    description: "Explore NYC like a local with these insider tips.",
-    thumbnail: "https://images.unsplash.com/photo-1500916434205-0c77489c6cf7?w=500&h=280&fit=crop",
-    videoUrl: "https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
+    title: "Sintel: Epic Fantasy Animation",
+    description: "Embark on an epic fantasy journey with Sintel, a young woman searching for her dragon companion. A beautifully crafted animated short film with stunning visuals and emotional storytelling.",
+    thumbnail: "https://images.unsplash.com/photo-1533158307587-50b90899c9fb?w=500&h=280&fit=crop",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
     views: 823000,
     createdAt: "2023-08-10T09:15:00Z",
-    duration: 1320, // in seconds
+    duration: 888, // 14:48 - actual video length
     userId: "4",
     likes: 38700,
     dislikes: 1100,
   },
   {
     id: "8",
-    title: "Easy 15-Minute Desserts",
-    description: "Quick and delicious dessert recipes that anyone can make.",
-    thumbnail: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&h=280&fit=crop",
-    videoUrl: "https://samplelib.com/lib/preview/mp4/sample-15s.mp4",
+    title: "Tears of Steel: Sci-Fi Animation",
+    description: "Dive into this science fiction animation masterpiece featuring stunning visual effects and a compelling story about love, loss, and technology. A groundbreaking blend of live-action and animation.",
+    thumbnail: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=500&h=280&fit=crop",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
     views: 612000,
     createdAt: "2023-09-25T11:50:00Z",
-    duration: 845, // in seconds
+    duration: 734, // 12:14 - actual video length
     userId: "5",
     likes: 29800,
     dislikes: 750,
+  },
+  {
+    id: "9",
+    title: "We Are Going On Bullrun: Racing Animation",
+    description: "Experience the thrill of racing in this action-packed animated short. Join the adventure as characters compete in an exciting bullrun race with stunning animated sequences.",
+    thumbnail: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&h=280&fit=crop",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+    views: 1500000,
+    createdAt: "2023-10-05T14:30:00Z",
+    duration: 64, // 1:04 - actual video length
+    userId: "3",
+    likes: 89000,
+    dislikes: 2100,
+  },
+  {
+    id: "10",
+    title: "What Car Can You Get For A Grand: Budget Car Animation",
+    description: "Discover what kind of car you can buy with just $1000 in this informative and entertaining animated guide. Learn about budget car options through creative animation and helpful insights.",
+    thumbnail: "https://images.unsplash.com/photo-1494976388539-d1058494cdd8?w=500&h=280&fit=crop",
+    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
+    views: 980000,
+    createdAt: "2023-09-15T10:15:00Z",
+    duration: 71, // 1:11 - actual video length
+    userId: "2",
+    likes: 56700,
+    dislikes: 1300,
   },
 ];
 
@@ -153,162 +177,94 @@ export const videos: Video[] = [
 export const comments: Comment[] = [
   {
     id: "1",
-    content: "Great video! Really helpful content.",
+    content: "Big Buck Bunny is such a classic! The animation quality is amazing for an open-source project. The attention to detail in every frame is incredible.",
     userId: "2",
     videoId: "1",
     createdAt: "2023-08-13T10:20:00Z",
   },
   {
     id: "2",
-    content: "I learned so much from this, thank you!",
+    content: "The fire safety animation was surprisingly effective! My kids actually paid attention and learned important safety tips. Great way to educate!",
     userId: "4",
-    videoId: "1",
-    createdAt: "2023-08-14T09:35:00Z",
-  },
-  {
-    id: "3",
-    content: "The views in Bali look amazing! Adding this to my travel list.",
-    userId: "1",
     videoId: "2",
     createdAt: "2023-09-06T15:40:00Z",
   },
   {
-    id: "4",
-    content: "Made this pasta last night, it was delicious!",
-    userId: "3",
+    id: "3",
+    content: "For Bigger Escapes had such creative animation sequences! The way they portrayed the escape scenarios was both thrilling and beautifully animated.",
+    userId: "1",
     videoId: "3",
     createdAt: "2023-07-29T18:25:00Z",
   },
   {
-    id: "5",
-    content: "Great review! I'm definitely getting the new iPhone now.",
+    id: "4",
+    content: "The For Bigger Fun animation really lives up to its name! The colors and energy in this short are contagious. Made me smile the whole time.",
     userId: "5",
     videoId: "4",
     createdAt: "2023-10-02T11:15:00Z",
+  },
+  {
+    id: "5",
+    content: "Love the car animation in Joyrides! The way they animated the driving sequences feels so dynamic and exciting. Great work!",
+    userId: "3",
+    videoId: "5",
+    createdAt: "2023-08-26T09:30:00Z",
+  },
+  {
+    id: "6",
+    content: "The meltdowns animation is hilarious! So relatable and the comedic timing is perfect. Everyone should watch this when having a bad day.",
+    userId: "4",
+    videoId: "6",
+    createdAt: "2023-09-19T16:20:00Z",
+  },
+  {
+    id: "7",
+    content: "Sintel is absolutely breathtaking! The fantasy world they created is so immersive. The emotional story combined with stunning animation makes this a masterpiece.",
+    userId: "1",
+    videoId: "7",
+    createdAt: "2023-08-11T12:45:00Z",
+  },
+  {
+    id: "8",
+    content: "Tears of Steel blew me away! The blend of live-action and animation is seamless. The sci-fi elements are so well executed. This is professional-level work!",
+    userId: "2",
+    videoId: "8",
+    createdAt: "2023-09-26T14:10:00Z",
+  },
+  {
+    id: "9",
+    content: "The bullrun racing animation is so exciting! The way they captured the speed and intensity of racing through animation is impressive. Love the energy!",
+    userId: "5",
+    videoId: "9",
+    createdAt: "2023-10-06T09:15:00Z",
+  },
+  {
+    id: "10",
+    content: "Great budget car guide! The animation made learning about affordable cars actually fun. The information was practical and well-presented.",
+    userId: "3",
+    videoId: "10",
+    createdAt: "2023-09-16T11:30:00Z",
   },
 ];
 
 // Helper functions to retrieve and manipulate data
 export const getVideoWithUser = async (videoId: string): Promise<Video | undefined> => {
-  try {
-    // First, try to fetch from Supabase
-    const { data: videoData, error } = await supabase
-      .from('videos')
-      .select('*')
-      .eq('id', videoId)
-      .single();
-
-    if (error) {
-      console.error("Error fetching from Supabase:", error);
-      // Fall back to mock data if no results from Supabase
-      const mockVideo = videos.find((v) => v.id === videoId);
-      if (!mockVideo) return undefined;
-      
-      return { 
-        ...mockVideo, 
-        user: users.find((u) => u.id === mockVideo.userId) 
-      };
-    }
-    
-    // Transform Supabase data to match our Video type
-    if (videoData) {
-      // Fetch user data
-      const userId = videoData.user_id;
-      const { data: userData } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', userId)
-        .single();
-      
-      // Create user object with appropriate avatar
-      const userObject = userData ? {
-        id: userData.id,
-        name: userData.username || "Unknown User",
-        username: userData.username || "user",
-        avatar: userData.avatar || `https://ui-avatars.com/api/?name=${userData.username || "Unknown"}&background=random`,
-        subscribers: 0
-      } : undefined;
-      
-      return {
-        id: videoData.id,
-        title: videoData.title,
-        description: videoData.description || "",
-        thumbnail: videoData.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=280&fit=crop",
-        videoUrl: videoData.video_url,
-        views: videoData.views,
-        createdAt: videoData.created_at,
-        duration: videoData.duration,
-        userId: videoData.user_id,
-        user: userObject,
-        likes: videoData.likes,
-        dislikes: videoData.dislikes
-      };
-    }
-    
-    return undefined;
-  } catch (error) {
-    console.error("Error in getVideoWithUser:", error);
-    return undefined;
-  }
+  const video = videos.find((v) => v.id === videoId);
+  if (!video) return undefined;
+  
+  return { 
+    ...video, 
+    user: users.find((u) => u.id === video.userId) 
+  };
 };
 
 export const getVideosByUser = async (userId: string): Promise<Video[]> => {
-  try {
-    // Try to fetch from Supabase first
-    const { data: videosData, error } = await supabase
-      .from('videos')
-      .select('*')
-      .eq('user_id', userId);
-
-    if (error) {
-      console.error("Error fetching from Supabase:", error);
-      // Fall back to mock data
-      return videos
-        .filter((video) => video.userId === userId)
-        .map((video) => ({
-          ...video,
-          user: users.find((u) => u.id === video.userId),
-        }));
-    }
-
-    if (videosData && videosData.length > 0) {
-      // Get user data
-      const user = await getUser(userId);
-      
-      // Map Supabase data to our Video type
-      return videosData.map(video => ({
-        id: video.id,
-        title: video.title,
-        description: video.description || "",
-        thumbnail: video.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=280&fit=crop",
-        videoUrl: video.video_url,
-        views: video.views,
-        createdAt: video.created_at,
-        duration: video.duration,
-        userId: video.user_id,
-        user: user,
-        likes: video.likes,
-        dislikes: video.dislikes
-      }));
-    }
-    
-    // Fall back to mock data if no results
-    return videos
-      .filter((video) => video.userId === userId)
-      .map((video) => ({
-        ...video,
-        user: users.find((u) => u.id === video.userId),
-      }));
-  } catch (error) {
-    console.error("Error in getVideosByUser:", error);
-    // Fall back to mock data on error
-    return videos
-      .filter((video) => video.userId === userId)
-      .map((video) => ({
-        ...video,
-        user: users.find((u) => u.id === video.userId),
-      }));
-  }
+  return videos
+    .filter((video) => video.userId === userId)
+    .map((video) => ({
+      ...video,
+      user: users.find((u) => u.id === video.userId),
+    }));
 };
 
 export const getCommentsForVideo = (videoId: string): Comment[] => {
@@ -322,276 +278,31 @@ export const getCommentsForVideo = (videoId: string): Comment[] => {
 };
 
 export const getUser = async (userId: string): Promise<User | undefined> => {
-  try {
-    // First check if user exists in Supabase
-    const { data: userData, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', userId)
-      .single();
-
-    if (error) {
-      console.error("Error fetching user from Supabase:", error);
-      // Fall back to mock data
-      return users.find((user) => user.id === userId);
-    }
-
-    if (userData) {
-      return {
-        id: userData.id,
-        name: userData.username || "Unknown User",
-        username: userData.username || "user",
-        avatar: userData.avatar || `https://ui-avatars.com/api/?name=${userData.username || "Unknown"}&background=random`,
-        subscribers: 0
-      };
-    }
-    
-    // Fall back to mock data if no results
-    return users.find((user) => user.id === userId);
-  } catch (error) {
-    console.error("Error in getUser:", error);
-    // Fall back to mock data on error
-    return users.find((user) => user.id === userId);
-  }
+  return users.find((user) => user.id === userId);
 };
 
 export const getAllVideos = async (): Promise<Video[]> => {
-  try {
-    // Try to fetch from Supabase first
-    const { data: videosData, error } = await supabase
-      .from('videos')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error("Error fetching from Supabase:", error);
-      // Fall back to mock data
-      return videos.map((video) => ({
-        ...video,
-        user: users.find((u) => u.id === video.userId),
-      }));
-    }
-
-    if (videosData && videosData.length > 0) {
-      // Get all user IDs
-      const userIds = [...new Set(videosData.map(video => video.user_id))];
-      
-      // Fetch all users in one query
-      const { data: usersData } = await supabase
-        .from('profiles')
-        .select('*')
-        .in('id', userIds);
-      
-      const userMap = new Map();
-      if (usersData) {
-        usersData.forEach(user => {
-          userMap.set(user.id, {
-            id: user.id,
-            name: user.username || "Unknown User",
-            username: user.username || "user",
-            avatar: user.avatar || `https://ui-avatars.com/api/?name=${user.username || "Unknown"}&background=random`,
-            subscribers: 0
-          });
-        });
-      }
-      
-      // Map Supabase data to our Video type
-      return videosData.map(video => ({
-        id: video.id,
-        title: video.title,
-        description: video.description || "",
-        thumbnail: video.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=280&fit=crop",
-        videoUrl: video.video_url,
-        views: video.views,
-        createdAt: video.created_at,
-        duration: video.duration,
-        userId: video.user_id,
-        user: userMap.get(video.user_id) || users.find(u => u.id === video.user_id),
-        likes: video.likes,
-        dislikes: video.dislikes
-      }));
-    }
-    
-    // If no Supabase videos, fall back to mock data
-    if (videosData && videosData.length === 0) {
-      // Combine with mock data
-      return videos.map((video) => ({
-        ...video,
-        user: users.find((u) => u.id === video.userId),
-      }));
-    }
-    
-    // Fall back to mock data if no results
-    return videos.map((video) => ({
-      ...video,
-      user: users.find((u) => u.id === video.userId),
-    }));
-  } catch (error) {
-    console.error("Error in getAllVideos:", error);
-    // Fall back to mock data on error
-    return videos.map((video) => ({
-      ...video,
-      user: users.find((u) => u.id === video.userId),
-    }));
-  }
+  return videos.map((video) => ({
+    ...video,
+    user: users.find((u) => u.id === video.userId),
+  }));
 };
 
 export const getTrendingVideos = async (): Promise<Video[]> => {
-  try {
-    // Try to fetch from Supabase first, ordered by views
-    const { data: videosData, error } = await supabase
-      .from('videos')
-      .select('*')
-      .order('views', { ascending: false })
-      .limit(4);
-
-    if (error) {
-      console.error("Error fetching from Supabase:", error);
-      // Fall back to mock data
-      return [...videos]
-        .sort((a, b) => b.views - a.views)
-        .slice(0, 4)
-        .map((video) => ({
-          ...video,
-          user: users.find((u) => u.id === video.userId),
-        }));
-    }
-    
-    if (videosData && videosData.length > 0) {
-      // Get all user IDs
-      const userIds = [...new Set(videosData.map(video => video.user_id))];
-      
-      // Fetch all users in one query
-      const { data: usersData } = await supabase
-        .from('profiles')
-        .select('*')
-        .in('id', userIds);
-      
-      const userMap = new Map();
-      if (usersData) {
-        usersData.forEach(user => {
-          userMap.set(user.id, {
-            id: user.id,
-            name: user.username || "Unknown User",
-            username: user.username || "user",
-            avatar: user.avatar || `https://ui-avatars.com/api/?name=${user.username || "Unknown"}&background=random`,
-            subscribers: 0
-          });
-        });
-      }
-      
-      // Map Supabase data to our Video type
-      return videosData.map(video => ({
-        id: video.id,
-        title: video.title,
-        description: video.description || "",
-        thumbnail: video.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=280&fit=crop",
-        videoUrl: video.video_url,
-        views: video.views,
-        createdAt: video.created_at,
-        duration: video.duration,
-        userId: video.user_id,
-        user: userMap.get(video.user_id) || users.find(u => u.id === video.user_id),
-        likes: video.likes,
-        dislikes: video.dislikes
-      }));
-    }
-    
-    // If no results or not enough, fall back to mock data
-    return [...videos]
-      .sort((a, b) => b.views - a.views)
-      .slice(0, 4)
-      .map((video) => ({
-        ...video,
-        user: users.find((u) => u.id === video.userId),
-      }));
-  } catch (error) {
-    console.error("Error in getTrendingVideos:", error);
-    // Fall back to mock data on error
-    return [...videos]
-      .sort((a, b) => b.views - a.views)
-      .slice(0, 4)
-      .map((video) => ({
-        ...video,
-        user: users.find((u) => u.id === video.userId),
-      }));
-  }
+  return [...videos]
+    .sort((a, b) => b.views - a.views)
+    .slice(0, 4)
+    .map((video) => ({
+      ...video,
+      user: users.find((u) => u.id === video.userId),
+    }));
 };
 
 export const getRecentVideos = async (): Promise<Video[]> => {
-  try {
-    // Try to fetch from Supabase first
-    const { data: videosData, error } = await supabase
-      .from('videos')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      console.error("Error fetching from Supabase:", error);
-      // Fall back to mock data
-      return [...videos]
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-        .map((video) => ({
-          ...video,
-          user: users.find((u) => u.id === video.userId),
-        }));
-    }
-    
-    if (videosData && videosData.length > 0) {
-      // Get all user IDs
-      const userIds = [...new Set(videosData.map(video => video.user_id))];
-      
-      // Fetch all users in one query
-      const { data: usersData } = await supabase
-        .from('profiles')
-        .select('*')
-        .in('id', userIds);
-      
-      const userMap = new Map();
-      if (usersData) {
-        usersData.forEach(user => {
-          userMap.set(user.id, {
-            id: user.id,
-            name: user.username || "Unknown User",
-            username: user.username || "user",
-            avatar: user.avatar || `https://ui-avatars.com/api/?name=${user.username || "Unknown"}&background=random`,
-            subscribers: 0
-          });
-        });
-      }
-      
-      // Map Supabase data to our Video type
-      return videosData.map(video => ({
-        id: video.id,
-        title: video.title,
-        description: video.description || "",
-        thumbnail: video.thumbnail || "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&h=280&fit=crop",
-        videoUrl: video.video_url,
-        views: video.views,
-        createdAt: video.created_at,
-        duration: video.duration,
-        userId: video.user_id,
-        user: userMap.get(video.user_id) || users.find(u => u.id === video.user_id),
-        likes: video.likes,
-        dislikes: video.dislikes
-      }));
-    }
-    
-    // If no results, fall back to mock data
-    return [...videos]
-      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-      .map((video) => ({
-        ...video,
-        user: users.find((u) => u.id === video.userId),
-      }));
-  } catch (error) {
-    console.error("Error in getRecentVideos:", error);
-    // Fall back to mock data on error
-    return [...videos]
-      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-      .map((video) => ({
-        ...video,
-        user: users.find((u) => u.id === video.userId),
-      }));
-  }
+  return [...videos]
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .map((video) => ({
+      ...video,
+      user: users.find((u) => u.id === video.userId),
+    }));
 };
