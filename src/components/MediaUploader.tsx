@@ -58,7 +58,7 @@ export default function MediaUploader({
         className="flex-1 sm:flex-none text-xs md:text-sm"
       >
         <Image size={14} className="mr-1 md:mr-2 md:w-4 md:h-4" />
-        <span className="hidden sm:inline">Photo (Any Size)</span>
+        <span className="hidden sm:inline">Photo (Only 50MB Size Support)</span>
         <span className="sm:hidden">Photo</span>
       </Button>
       
@@ -70,7 +70,7 @@ export default function MediaUploader({
         className="flex-1 sm:flex-none text-xs md:text-sm"
       >
         <Video size={14} className="mr-1 md:mr-2 md:w-4 md:h-4" />
-        <span className="hidden sm:inline">Video (Any Size)</span>
+        <span className="hidden sm:inline">Video (Only 50MB Size Support)</span>
         <span className="sm:hidden">Video</span>
       </Button>
 
